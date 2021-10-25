@@ -1,4 +1,5 @@
 import dbProds from '../db';
+import { filterCategory } from '../util';
 import ProductRepository from './baseRepository';
 
 /**
@@ -73,7 +74,7 @@ export default class InMemoryProductRepository extends ProductRepository {
     if (product === undefined) return undefined;
 
     const category = product.category;
-    const categoryProducts = this.#products.filter(x => x.category === category);
+    const categoryProducts = this.#products.filter(x => filterCategory(x, category));
     const index = categoryProducts.indexOf(product);
 
     let left = 1;
