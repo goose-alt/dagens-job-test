@@ -104,6 +104,12 @@ export default class ProductController {
     });
   }
 
+  /**
+   * Get N nearest elements in category to given id, based on price endpoint
+   * 
+   * @param req request
+   * @param res response
+   */
   getNNearestInCategoryToId(req, res) {
     const {
       query,
@@ -124,6 +130,12 @@ export default class ProductController {
     });
   }
 
+  /**
+   * Get list of available categories endpoint
+   * 
+   * @param req request
+   * @param res response
+   */
   getCategories(req, res) {
     res.status(200).send({
       categories: this.#repository.getCategories(),

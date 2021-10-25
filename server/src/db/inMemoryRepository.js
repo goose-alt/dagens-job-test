@@ -122,6 +122,7 @@ export default class InMemoryProductRepository extends ProductRepository {
     return products;
   }
 
+  /** @inheritdoc */
   getCategories() {
     let categories = this.#products.map(x => x.category);
 
