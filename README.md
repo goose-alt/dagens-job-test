@@ -1,5 +1,8 @@
 # Dagens Job Test
+## Implementation notes
+Have a look at [implementation-notes.md](./implementation-notes.md) for notes on the implementation and why i did as i did 
 
+## Test
 Hi applicant!
 
 This repo contains the starter code for Dagens job test, as well as the task description. Please see README.md in `server/` and `client/` folders on how to install dependencies and start the server and client. The intention with this test is to have a look at how you solve a pretty straight forward problem, and then discuss it afterwards.
