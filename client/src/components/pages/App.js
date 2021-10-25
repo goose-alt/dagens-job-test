@@ -14,7 +14,9 @@ export default class App extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
+  componentDidMount() {
     // Retrieve data
     this.getCategories();
   }
