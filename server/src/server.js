@@ -12,15 +12,11 @@ const repository = new InMemoryProductRepository();
 const controller = new ProductController(repository);
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 http.createServer(app).listen(3001, () => {
-  console.log('Listen on 0.0.0.0:3001');
-});
-
-app.get('/', (_, res) => {
-  res.status(200).send();
+  console.log('Listening on 0.0.0.0:3001');
 });
 
 app.get('/products',     (req, res) => controller.list(req, res));
