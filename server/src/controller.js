@@ -98,7 +98,23 @@ export default class ProductController {
   }
 
   getNNearestInCategoryToId(req, res) {
+    const {
+      query,
+      params
+    } = req;
 
+    const n = parseInt(query.n) || 3;
+    const products = this.#repository.getNNearestInCategoryToId(params.id, n);
+
+    if (products === undefined) {
+      return res.status(404).send({
+        msg: 'Product not found',
+      });
+    }
+
+    res.status(200).send({
+      products,
+    });
   }
 
   filterCategory(product, category) {

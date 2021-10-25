@@ -23,14 +23,9 @@ app.get('/', (_, res) => {
   res.status(200).send();
 });
 
-app.get('/products', (req, res) => controller.list(req, res));
-
-app.post('/products', (req, res) => controller.create(req, res));
-
-// {id} is prob not right
-// There are 3 ways, in order of easiest to hardest, sort the array then take k/2 on every side
-// Priority queue, should be O(N)
-app.get('/products/{id}', (req, res) => controller.getNNearestInCategoryToId(req, res))
+app.get('/products',     (req, res) => controller.list(req, res));
+app.post('/products',    (req, res) => controller.create(req, res));
+app.get('/products/:id', (req, res) => controller.getNNearestInCategoryToId(req, res))
 
 process.on('SIGINT', function () {
   process.exit();
