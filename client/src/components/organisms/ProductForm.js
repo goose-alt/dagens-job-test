@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import TextInputWithLabel from '../molecules/TextInputWithLabel';
 import NumberInputWithLabel from '../molecules/NumberInputWithLabel';
+import SelectInputWithLabel from '../molecules/SelectInputWithLabel';
 
 export default class ProductForm extends React.Component {
   constructor(props) {
@@ -24,21 +24,24 @@ export default class ProductForm extends React.Component {
       [name]: value,
     });
   }
-
+  
   handleSubmit(event) {
-    axios.post('http://localhost:3001/products', this.state)
-      .then((res) => {
-        console.log(res);
-        alert("Added product");
-      }).catch((e) => {
-        console.error(e);
-        alert("Adding of product failed");
+    if (this.props.onSubmit) {
+      this.props.onSubmit({
+        name: this.state.name,
+        category: this.state.category,
+        price: this.state.price,
       });
+    }
     
     event.preventDefault();
   }
 
   render() {
+    const {
+      categories
+    } = this.props;
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -49,10 +52,11 @@ export default class ProductForm extends React.Component {
             onChange={ this.handleChange }
           /><br />
           
-          <TextInputWithLabel
+          <SelectInputWithLabel
             name="category"
             label="Category"
             value={ this.state.category }
+            values={ categories }
             onChange={ this.handleChange }
           /><br />
           
