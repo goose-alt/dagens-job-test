@@ -1,4 +1,5 @@
 import { v4 as uuidV4 } from 'uuid';
+import { filterCategory, filterMinPrice, filterMaxPrice } from './util';
 
 /**
  * Controller to handle Product routes
@@ -34,7 +35,7 @@ export default class ProductController {
     let prPage = parseInt(query.prPage) || 24;
 
     // Get products, starting at 0, thereby page - 1
-    let filter = (x) => this.filterCategory(x, query.category) && this.filterMinPrice(x, parseInt(query.minPrice)) && this.filterMaxPrice(x, parseInt(query.maxPrice));
+    let filter = (x) => filterCategory(x, query.category) && filterMinPrice(x, parseInt(query.minPrice)) && filterMaxPrice(x, parseInt(query.maxPrice));
     let filtered = this.#repository.list(filter);
 
     // Calculate offset as page - 1 multiplied by the amount pr page to get the element right after the last on the last page
@@ -115,38 +116,5 @@ export default class ProductController {
     res.status(200).send({
       products,
     });
-  }
-
-  filterCategory(product, category) {
-    // Not supplied
-    if (category === undefined) return true;
-
-    // Filter
-    if (product.category === category) return true;
-
-    // Default
-    return false;
-  }
-
-  filterMinPrice(product, minPrice) {
-    // Not supplied
-    if (isNaN(minPrice) || minPrice == undefined) return true;
-
-    // Filter
-    if (product.price >= minPrice) return true;
-
-    // Default
-    return false
-  }
-
-  filterMaxPrice(product, maxPrice) {
-    // Not supplied
-    if (isNaN(maxPrice) || maxPrice === undefined) return true;
-
-    // Filter
-    if (product.price <= maxPrice) return true;
-
-    // Default
-    return false
   }
 }
