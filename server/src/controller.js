@@ -99,7 +99,7 @@ export default class ProductController {
     this.#repository.create(product);
 
     // Return the productI
-    res.status(200).send({
+    res.status(201).send({
       product,
     });
   }
