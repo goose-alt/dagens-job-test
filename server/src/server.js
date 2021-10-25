@@ -21,7 +21,8 @@ http.createServer(app).listen(3001, () => {
 
 app.get('/products',     (req, res) => controller.list(req, res));
 app.post('/products',    (req, res) => controller.create(req, res));
-app.get('/products/:id', (req, res) => controller.getNNearestInCategoryToId(req, res))
+app.get('/products/:id', (req, res) => controller.getNNearestInCategoryToId(req, res));
+app.get('/categories',   (req, res) => controller.getCategories(req, res));
 
 process.on('SIGINT', function () {
   process.exit();

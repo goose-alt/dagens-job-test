@@ -121,4 +121,11 @@ export default class InMemoryProductRepository extends ProductRepository {
 
     return products;
   }
+
+  getCategories() {
+    let categories = this.#products.map(x => x.category);
+
+    // Create a set from the categories, thereby getting only the unique categories
+    return [...new Set(categories)];
+  }
 }

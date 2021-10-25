@@ -80,6 +80,12 @@ export default class ProductController {
       price
     } = body;
 
+    if (!this.#repository.getCategories().includes(category)) {
+      return res.status(400).send({
+        msg: `${category} is not an allowed category`,
+      });
+    }
+
     // Construct product
     let uuid = uuidV4();
     let product = {
@@ -115,6 +121,12 @@ export default class ProductController {
 
     res.status(200).send({
       products,
+    });
+  }
+
+  getCategories(req, res) {
+    res.status(200).send({
+      categories: this.#repository.getCategories(),
     });
   }
 }

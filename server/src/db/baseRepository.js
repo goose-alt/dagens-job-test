@@ -36,4 +36,9 @@ export default class ProductRepository {
      * @param {number} n How many elements to retrieve
      */
     getNNearestInCategoryToId(id, n) {}
+
+    /**
+     * Retrieve all available categories
+     */
+    getCategories() {}
 }
